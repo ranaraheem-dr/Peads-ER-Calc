@@ -1,3 +1,8 @@
+// script.js
+
+document.addEventListener("DOMContentLoaded", function(){
+  const button = document.getElementById("calculate-button");
+  button.addEventListener("click", calculate);
 medications = {
   fluidRateMedications: [
     { name : "Plan A (Rehydration)", dose: 50, frequency: "ml/kg", formula: "Given orally over 4 hours" },
@@ -220,37 +225,85 @@ medications = {
   ],
 
 };
-function calculate() {
-  // your calculation logic here
-  console.log("Calculate function called!");
-}
+  function calculate() {
+    // Get the weight input value
+    const weightInput = document.getElementById("weight");
+    const weight = parseFloat(weightInput.value);
+
+    // Validate the weight input
+    if (isNaN(weight) || weight <= 0) {
+      alert("Please enter a valid weight");
+      return;
+    }
+
+    // Calculate the medication doses
+    const results = calculateMedicationDose(weight);
+
+    // Generate the HTML for the results
+    const html = generateHtml(results);
+
+    // Display the results
+    document.getElementById("results").innerHTML = html;
+  }
+
   // Function to calculate the medication dose for a given weight
-function calculateMedicationDose(weight) {
-  const results = {};
+  function calculateMedicationDose(weight) {
+    const results = {};
 
-  // Loop through each medication category
-  Object.keys(medications).forEach((category) => {
-    const medicationsInCategory = medications[category];
-    const categoryResults = [];
+    // Loop through each medication category
+    Object.keys(medications).forEach((category) => {
+      const medicationsInCategory = medications[category];
+      const categoryResults = [];
 
-    // Loop through each medication in the category
-    medicationsInCategory.forEach((medication) => {
-      const dose = medication.dose * weight;
-      categoryResults.push({
-        name: medication.name,
-        dose: dose,
-        frequency: medication.frequency,
-        formula: medication.formula,
+      // Loop through each medication in the category
+      medicationsInCategory.forEach((medication) => {
+        const dose = medication.dose * weight;
+        categoryResults.push({
+          name: medication.name,
+          dose: dose,
+          frequency: medication.frequency,
+          formula: medication.formula,
+        });
       });
+
+      results[category] = categoryResults;
     });
 
-    results[category] = categoryResults;
-  });
+    return results;
+  }
 
-  return results;
-}
+  // Function to generate the HTML for the results
+  function generateHtml(results) {
+    const html = [];
 
-// Function to generate the HTML for the results
+    // Loop through each medication category
+    Object.keys(results).forEach((category) => {
+      const categoryResults = results[category];
+
+      // Create a table for the category
+      html.push(`<h2>${category}</h2>`);
+      html.push("<table>");
+      html.push("<tr>");
+      html.push("<th>Medication</th>");
+      html.push("<th>Dose</th>");
+      html.push("<th>Formula</th>");
+      html.push("</tr>");
+
+      // Loop through each medication in the category
+      categoryResults.forEach((result) => {
+        html.push("<tr>");
+        html.push(`<td>${result.name}</td>`);
+        html.push(`<td>${result.dose} ${result.frequency}</td>`);
+        html.push(`<td>${result.formula}</td>`);
+        html.push("</tr>");
+      });
+
+      html.push("</table>");
+    });
+
+    return html.join("");
+  }
+});te the HTML for the results
 function generateHtml(results) {
   const html = [];
 
