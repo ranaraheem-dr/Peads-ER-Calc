@@ -1,19 +1,18 @@
- const dehydrationPlan = [
+medications = {
+  fluidRateMedications: [
     { name : "Plan A (Rehydration)", dose: 50, frequency: "ml/kg", formula: "Given orally over 4 hours" },
     { name : "Plan B (Moderate)", dose: 100, frequency: "ml/kg", formula: "Given over 4 hours" },
     { name : "Plan C (Severe - 30% fluid)", dose: 30, frequency: "ml/kg", formula: "<span class='centered-text'>Over 30 minsin child and 1 hr in infant</span>" },
-    { name : "Plan C (Severe - 70% fluid)", dose: 70, frequency: "ml/kg", formula: "<span class='centered-text'>Over 5 hrs in infant and 2.5 hrs in child</span>" },
-   ];
-   
- const fluidRates = [
+    { name : "Plan C (Severe - 70% fluid)", dose: 70, frequency: "ml/kg", formula: "<span class='centered-text'>Over 5 hrs in infant and 2.5 hrs in child</span>" },     
+  ],
+  dehydrationPlanMedications: [
     { name : "Fluid Bolus (10ml/kg)", dose: 10, frequency: "ml/kg", formula: "Given as bolus over 30-60 min" },
     { name : "Fluid Bolus (20ml/kg)", dose: 20, frequency: "ml/kg", formula: "Given as bolus over 30-60 min" },
     { name : "Maintenance Fluid (1 hour)", dose: 4, frequency: "ml/kg/hr", formula: "Given as continuous infusion" },
     { name : "Maintenance Fluid (8 hours)", dose: 32, frequency: "ml/kg", formula: "Given over 8 hours" },
     { name : "Maintenance Fluid (24 hours)", dose: 96, frequency: "ml/kg", formula: "Given over 24 hours" },
-   ];
-   
- const antibiotics = [
+  ],
+  antibioticMedications: [
     { name : "Augmentin", dose: 30, frequency: "TDS", formula: "30mg/kg/dose" },
     { name : "Amikacin", dose: 15, frequency: "BD", formula: "15-22.5mg/kg/24 hrs or 7.5mg/kg/dose" },
     { name : "Tanzo", dose: 90, frequency: "TDS", formula: "90mg/kg/d" },
@@ -52,19 +51,18 @@
     { name : "Ethambutol min", dose: 15, frequency: "mg/kg/dose", formula: "15mg/kg/dose" },
     { name : "Ethambutol max", dose: 25, frequency: "mg/kg/dose", formula: "25mg/kg/dose" },
     { name : "Gentamicin", dose: 7.5, frequency: "mg/kg/dose", formula: "7.5mg/kg/dose" },
-   ];
-
- const vasodilators = [
+  ],
+  vasodilatormedications: [
     { name: "GTN", dose: 0.5, frequency: "mcg/kg/min", formula: "Given as continuous infusion" },
     { name: "SNP", dose: 0.5, frequency: "mcg/kg/min", formula: "Given as continuous infusion" },
-    ];
+  ],
 
- const antiarrythmics = [
+ antiarrythmicsmedications: [
     { name: "Amiodarone", dose: 5, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Lignocaine", dose: 1, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
-    ];
+  ],
 
- const miscellaneous = [
+ miscellaneousmedications: [
     { name: "Dormicum", dose: 0.1, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Atrelax", dose: 0.1, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Avil", dose: 1, frequency: "mg/kg/dose", formula: "10mg/kg/loading" },
@@ -80,9 +78,9 @@
     { name: "Ranitidine (Zantac)", dose: 2, frequency: "mg/kg/dose", formula: "2 mg/kg" },
     { name: "Inj. Dicloran", dosage: 0.75, frequency: "mg/kg/dose", formula: "mg/kg/dose IM" },
     { name: "Vitamin-k", dose: 0.5, frequency: "mg/kg/dose", formula: "0.5mg/kg/dose" },
-    ];
+  ],
 
- const tablets = [
+ tabletsmedications: [
     { name: "Capace", dose: 10, frequency: "mg/kg/dose", formula: "Given orally" },
     { name: "Inderal", dose: 10, frequency: "mg/kg/dose", formula: "Given orally" },
     { name: "Aldactone", dose: 1.2, frequency: "mg/kg/dose", formula: "Given orally" },
@@ -92,9 +90,9 @@
     { name: "Aspirin 4mg", dose: 4, frequency: "mg/kg/dose", formula: "Given orally" },
     { name: "Aspirin 5mg", dose: 5, frequency: "mg/kg/dose", formula: "Given orally" },
     { name: "Britanyl 2.5mg", dose: 0.15, frequency: "mg/kg/dose", formula: "Given orally TDS" },
-    ];
+  ],
 
- const resuscitation = [
+ resuscitationmedications: [
     { name: "Endotracheal tube size", formula: "4 + Age/4" },
     { name: "Atropine Min", dose: 0.01, frequency: "mg/kg/dose", formula: "0.01 mg/kg" },
     { name: "Atropine Max", dose: 0.03, frequency: "mg/kg/dose", formula: "0.03 mg/kg" },
@@ -111,18 +109,18 @@
     { name: "Epinephrine (1:10,000)", dose: 10, frequency: "mcg/kg/dose", formula: "10 mcg/kg" },
     { name: "Digoxin", dose: 0.02, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Lidocaine", dose: 1, frequency: "mg/kg/dose", formula: "1 mg/kg" },
-    ];
+  ],
 
- const cardioversion = [
+ cardioversionmedications: [
     { name: "Atrial arrhythmias Min", dose: 0.5, frequency: "joule/kg/dose", formula: "0.5 joule/kg" },
     { name: "Atrial arrhythmias Max", dose: 1, frequency: "joule/kg/dose", formula: "1 joule/kg" },
     { name: "Ventricular Fibrillation", dose: 2, frequency: "joule/kg/dose", formula: "2 joules/kg" },
     { name: "Ventricular Tachycardia Min", dose: 1, frequency: "joule/kg/dose", formula: "1 joules/kg" },
     { name: "Ventricular Tachycardia Max", dose: 2, frequency: "joule/kg/dose", formula: "2 joules/kg" },
     { name: "Adenosine", dose: 0.1, frequency: "mg/kg/dose", formula: "0.1 mg/kg" },
-    ];
+  ],
 
- const antiepileptics = [
+ antiepilepticsmedications: [
     { name: "Lerace Loading", dose: 20, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Lerace (Min Maintenance)", dose: 20, frequency: "mg/kg/dose", formula: "20 mg/kg BD " },
     { name: "Lerace (Max Maintenance)", dose: 60, frequency: "mg/kg/dose", formula: "60 mg/kg BD" },
@@ -131,30 +129,30 @@
     { name: "Phenytoin", dose: 10, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Mannitol stat", dose: 10, frequency: "mg/kg/dose", formula: "Given as bolus over 30-60 min" },
     { name: "Mannitol maintenance", dose: 5, frequency: "mg/kg/dose", formula: "Given 6 hourly 5 days" },
-    ];
+  ],
 
- const pulmonaryhtn = [
+ pulmonaryhtnmedications: [
     { name: "Sildenafil (50,100,125 mg)", dose: 1, frequency: "mg/kg/dose", formula: "Given orally" },
     { name: "Benprost 20mcg", dose: 1, frequency: "mcg/kg/dose", formula: "mcg/kg/dose/TDS" },
     { name: "Bosmon 62.5mcg", dose: 1, frequency: "mcg/kg/dose", formula: "1mcg/kg/dose/BD" },
-    ];
+    ],
 
- const nebs = [
+ nebsmedications: [
     { name: "Ventolin", dose: 2.5, frequency: "ml/kg/dose", formula: "Nebulised over 15-20 min" },
     { name: "Atem <1 year", dose: 1, frequency: "ml/dose", formula: "Nebulised over 15-20 min" },
     { name: "Atem >1 year", dose: 2.5, frequency: "ml/dose", formula: "Nebulised over 15-20 min" },
-    ];
+    ],
 
- const bronchodilators = [ 
+ bronchodilatorsmedications: [ 
     { name: "Terbutaline loading min" , dose: 2, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" }, 
     { name: "Terbutaline loading max" , dose: 10, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" }, 
     { name: "Terbutaline maintenance min" , dose: 0.2, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" }, 
     { name : "Terbutaline maintenance max" , dose: 0.4, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" },
     { name : "Mgso4 min" , dose: 25, frequency: "mg/kg/dose" , formula: "25mg/kg" }, 
     { name : "Mgso4 max" , dose: 50,frequency: "mg/kg/dose" , formula: "50mg/kg" }, 
-   ];
+   ],
 
- const hypercyanoticspells = [ 
+ hypercyanoticspellsmedications: [ 
     { name : "Esmolol 100mcg" , dose: 100, frequency: "mcg/kg/dose" , formula: "100-500 mcg/kg over 1 minute" }, 
     { name : "Esmolol 200mcg" , dose: 200, frequency: "mcg/kg/dose" , formula: "100-500 mcg/kg over 1 minute" }, 
     { name : "Esmolol 500mcg" , dose: 500, frequency: "mcg/kg/dose" , formula: "100-500 mcg/kg over 1 minute" }, 
@@ -163,9 +161,9 @@
     { name : "Phenylephrine 20mcg" , dose: 20, frequency: "mcg/kg/dose" , formula: "5-20 mcg/kg every 10-15 minutes" }, 
     { name : "Propranolol 0.015" , dose: 0.015, frequency: "mg/kg/dose" , formula: "0.015-0.02 mg/kg IV" }, 
     { name : "Propranolol 0.02" , dose: 0.02, frequency: "mg/kg/dose" , formula: "0.015-0.02 mg/kg IV" }, 
-   ];
+   ],
 
- const syrups = [ 
+ syrupsmedications: [ 
     { name : "Syp. Amoxil" , dosage: "50mg/kg/day" , formulation: "125mg/5ml" , frequency: "BD/TDS" , max: "1g/day" }, 
     { name : "Syp. Calamox" , dosage: "30-50mg/kg/day" , formulation: "156mg/5ml" , frequency: "BD/TDS" }, 
     { name : "Syp. Azit" , dosage: "12-15mg/kg/day" , formulation: "200mg/5ml" , frequency: "OD" }, 
@@ -173,9 +171,9 @@
     { name : "Syp. Septran" , dosage: "50-60mg/kg/day" , formulation: "200/40mg/5ml" , frequency: "BD" }, 
     { name : "Syp. Velosef" , dosage: "25-50mg/kg/day" , formulation: "125mg/5ml" , frequency: "BD" }, 
     { name : "Syp. Nitazide" , dosage: "100mg BD" , formulation: "100mg/5ml" , frequency: "BD" } 
-   ];
+  ],
 
- const reversals = [ 
+ reversalsmedications: [ 
     { name : "Atropine" , dose: 0.01, frequency: "mg/kg/dose" , formula: "0.01-0.02 mg/kg IV" }, 
     { name : "Edrophonium" , dose: 0.2, frequency: "mg/kg/dose" , formula: "0.2 mg/kg IV" }, 
     { name : "Flumazenil" , dose: 0.01, frequency: "mg/kg/dose" , formula: "0.01 mg/kg IV" },
@@ -183,26 +181,26 @@
     { name : "Narcan" , dose: 0.01, frequency: "mg/kg/dose" , formula: "0.01-0.1 mg/kg/dose IV" }, 
     { name : "Neostigmine" , dose: 0.05, frequency: "mg/kg/dose" , formula: "0.05-0.07 mg/kg IV" }, 
     { name : "Physostigmine" , dose: 0.01, frequency: "mg/kg/dose" , formula: "0.01 mg/kg IV" }, 
-   ];
+  ],
 
- const insulin = [ 
+ insulinmedications: [ 
     { name : "Insulin" , dose: 0.02, frequency: "U/kg/hr" , formula: "0.02-0.1 U/kg/hr" }, 
-   ]; 
+  ], 
 
- const bloodproducts = [
+ bloodproductsmedications: [
     { name: "Platelets", dose: 5, frequency: "ml/kg/dose", formula: "5-10 ml/kg will raise count 50-100x10^9/L" },
     { name: "PRBC", dose: 10, frequency: "ml/kg/dose", formula: "10 ml/kg will raise Hg by 1 gm" },
     { name: "FFP", dose: 10, frequency: "ml/kg/dose", formula: "10 ml/kg will raise the platelet count by 50,000-100,000/uL" },
-    ];
+  ],
 
- const hyperkalemia = [ 
+ hyperkalemiamedications: [ 
     { name : "Dextrose" , dose: 0.5, frequency: "g/kg/dose" , formula: "0.5-1 g/kg IV over 15 min" }, 
     { name : "Insulin" , dose: 0.2, frequency: "U/g Dextrose" , formula: "0.2-0.3 U Reg Insulin/g Dextrose" }, 
     { name: "Ca++" , dose: 4, frequency: "mg/kg/dose" , formula: "4-5 mg/kg IV over 5-10 min" }, 
     { name : "Kayexelate" , dose:1, frequency: "gm/kg/dose" , formula: "1-2 gm/kg PO, PR" }, 
-   ]; 
+  ], 
 
- const infusions = [ 
+ infusionsmedications: [ 
     { name : "Dopamine" , dose: 5, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" }, 
     { name : "Adrenaline 0.05mcg" , dose: 0.05, frequency: "mcg/kg/min" , formula: "0.05 mcg/kg/min" }, 
     { name : "Adrenaline 0.1mcg" , dose: 0.1, frequency: "mcg/kg/min" , formula: "0.1 mcg/kg/min" }, 
@@ -219,47 +217,71 @@
     { name : "Morphine 30 mcg" , dose: 30, frequency: "mcg/kg/hr" , formula: "30 mcg/kg/hr" }, 
     { name : "Morphine 60 mcg" , dose: 60, frequency: "mcg/kg/hr" , formula: "60 mcg/kg/hr" }, 
     { name : "Dobutamine" , dose: 5, frequency: "mcg/kg/min" , formula: "Given as continuous infusion" }, 
-    ];
+  ],
 
-  document.getElementById("calculate").addEventListener("click",
-  calculate); let weight=0; function calculate() { weight=document.getElementById('weight').value; let results='' ;
-  fluidRates.forEach((fluidRate)=> {
-  let dose = fluidRate.dose * weight;
-  results += `<tr>
-    <td>${fluidRate.name}</td>
-    <td>${dose} ${fluidRate.frequency}</td>
-    <td>${fluidRate.formula}</td>
-  </tr>`;
-  });
-  dehydrationPlan.forEach((dehydrationPlan) => {
-  let dose = dehydrationPlan.dose * weight;
-  results += `<tr>
-    <td>${dehydrationPlan.name}</td>
-    <td>${dose} ${dehydrationPlan.frequency}</td>
-    <td>${dehydrationPlan.formula}</td>
-  </tr>`;
-  });
-  antibiotics.forEach((antibiotic) => {
-  let dose = antibiotic.dose * weight;
-  results += `<tr>
-    <td>${antibiotic.name}</td>
-    <td>${dose} ${antibiotic.frequency}</td>
-    <td>${antibiotic.formula}</td>
-  </tr>`;
-  });
-  document.getElementById('results').innerHTML = `<table>
-    <tr>
-      <th>Medication</th>
-      <th>Dose</th>
-      <th>Formula</th>
-    </tr>${results}
-  </table>`;
-  }
+};
+// Function to calculate the medication dose for a given weight
+function calculateMedicationDose(weight) {
+  const results = {};
 
-  function saveToHomeScreen() {
-  // Add code to save to home screen
-  }
+  // Loop through each medication category
+  Object.keys(medications).forEach((category) => {
+    const medicationsInCategory = medications[category];
+    const categoryResults = [];
 
-  function showInstructions() {
-  document.getElementById('instructions').style.display = 'block';
-  }
+    // Loop through each medication in the category
+    medicationsInCategory.forEach((medication) => {
+      const dose = medication.dose * weight;
+      categoryResults.push({
+        name: medication.name,
+        dose: dose,
+        frequency: medication.frequency,
+        formula: medication.formula,
+      });
+    });
+
+    results[category] = categoryResults;
+  });
+
+  return results;
+}
+
+// Function to generate the HTML for the results
+function generateHtml(results) {
+  const html = [];
+
+  // Loop through each medication category
+  Object.keys(results).forEach((category) => {
+    const categoryResults = results[category];
+
+    // Create a table for the category
+    html.push(`<h2>${category}</h2>`);
+    html.push("<table>");
+    html.push("<tr>");
+    html.push("<th>Medication</th>");
+    html.push("<th>Dose</th>");
+    html.push("<th>Formula</th>");
+    html.push("</tr>");
+
+    // Loop through each medication in the category
+    categoryResults.forEach((result) => {
+      html.push("<tr>");
+      html.push(`<td>${result.name}</td>`);
+      html.push(`<td>${result.dose} ${result.frequency}</td>`);
+      html.push(`<td>${result.formula}</td>`);
+      html.push("</tr>");
+    });
+
+    html.push("</table>");
+  });
+
+  return html.join("");
+}
+
+// Event listener for the calculate button
+document.getElementById("calculate").addEventListener("click", () => {
+  const weight = document.getElementById("weight").value;
+  const results = calculateMedicationDose(weight);
+  const html = generateHtml(results);
+  document.getElementById("results").innerHTML = html;
+});
