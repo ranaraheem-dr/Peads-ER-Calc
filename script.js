@@ -1,4 +1,3 @@
-import medications from './medications.js';
  const dehydrationPlan = [
     { name : "Plan A (Rehydration)", dose: 50, frequency: "ml/kg", formula: "Given orally over 4 hours" },
     { name : "Plan B (Moderate)", dose: 100, frequency: "ml/kg", formula: "Given over 4 hours" },
