@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="script.js"></script>
   <meta charset="utf-8">
   <title>Paeds ER Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,11 +9,12 @@
   <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
+  <script src="script.js"></script>
   <div class="calculator">
     <h2>Paeds ER Calculator</h2>
     <h4>Created by Dr. Rana Raheem Mukhtar Jehandad - A vision of making emergency duties easier</h4>
-    <input type="number" id="weight" placeholder="Enter patient weight (kg)" oninput="calculate()">
-    <button id="calculate-button" onclick="calculate()">Calculate</button>
+    <input type="number" id="weight" placeholder="Enter patient weight (kg)" oninput="calculate">
+    <button id="calculate-button" onclick="calculate">Calculate</button>
     <div id="results"></div>
   </div>
   <div class="save-to-home-screen">
