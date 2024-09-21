@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Paeds ER Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <div class="calculator">
+    <h2>Paeds ER Calculator</h2>
+    <h4>Created by Dr. Rana Raheem Mukhtar Jehandad - A vision of making emergency duties easier</h4>
+    <input type="number" id="weight" placeholder="Enter patient weight (kg)" oninput="calculate()">
+    <button id="calculate-button" onclick="calculate()">Calculate</button>
+    <div id="results"></div>
+  </div>
+  <div class="save-to-home-screen">
+    <a href="#" onclick="saveToHomeScreen()">Save to Home Screen</a>
+    <a href="#" onclick="showInstructions()">Instructions</a>
+  </div>
+  <div id="instructions">
+    <h3>Instructions</h3>
+    <p>To add the calculator to your home screen, follow these steps:</p>
+    <ol>
+      <li>Open the calculator in your mobile browser.</li>
+      <li>Click the "Save to Home Screen" button.</li>
+      <li>Confirm the action and wait for the calculator to be added to your home screen.</li>
+      <li>Open the calculator from your home screen.</li>
+    </ol>
+  </div>
+  <script src="script.js"></script>
+  <script src="medications.js"></script>
+  <script>
+    // Define fluidRates, dehydrationPlan, and antibiotics variables
+    const fluidRates = [
+      // Add fluid rate data here
+    ];
+    const dehydrationPlan = [
+      // Add dehydration plan data here
+    ];
+    const antibiotics = [
+      // Add antibiotics data here
+    ];
+
+    // Load data from local storage
+    function loadData() {
+      const data = localStorage.getItem('data');
+      if (data) {
+        const parsedData = JSON.parse(data);
+        fluidRates = parsedData.fluidRates;
+        dehydrationPlan = parsedData.dehydrationPlan;
+        antibiotics = parsedData.antibiotics;
+      }
+    }
+
+    // Save data to local storage
+    function saveData() {
+      const data = {
+        fluidRates: fluidRates,
+        dehydrationPlan: dehydrationPlan,
+        antibiotics: antibiotics
+      };
+      localStorage.setItem('data', JSON.stringify(data));
+    }
+
+    // Calculate function
+    function calculate() {
+      const weight = document.getElementById('weight').value;
+      let results = '';
+
+      fluidRates.forEach((fluidRate) => {
+        const dose = fluidRate.dose * weight;
+        results += `<tr>
+          <td>${fluidRate.name}</td>
+          <td>${dose} ${fluidRate.frequency}</td>
+          <td>${fluidRate.formula}</td>
+        </tr>`;
+      });
+
+      dehydrationPlan.forEach((dehydrationPlan) => {
+        const dose = dehydrationPlan.dose * weight;
+        results += `<tr>
+          <td>${dehydrationPlan.name}</td>
+          <td>${dose} ${dehydrationPlan.frequency}</td>
+          <td>${dehydrationPlan.formula}</td>
+        </tr>`;
+      });
+
+      antibiotics.forEach((antibiotic) => {
+        const dose = antibiotic.dose * weight;
+        results += `<tr>
+          <td>${antibiotic.name}</td>
+          <td>${dose} ${antibiotic.frequency}</td>
+          <td>${antibiotic.formula}</td>
+        </tr>`;
+      });
+
+      document.getElementById('results').innerHTML = `<table>
+        <tr>
+          <th>Medication</th>
+          <th>Dose</th>
+          <th>Formula</th>
+        </tr>${results}
+      </table>`;
+    }
+
+    // Save to home screen function
+    function saveToHomeScreen() {
+      // Add code to save to home screen
+      // Use the beforeinstallprompt event to prompt the user to install the app
+      window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        // Show the install prompt
+        document.getElementById('install-button').style.display = 'block';
+      });
+    }
+
+    // Show instructions function
+    function showInstructions() {
+      document.getElementById('instructions').style.display = 'block';
+    }
+
+    // Load data on page load
+    loadData();
+
+    // Add event listener to calculate button
+    document.getElementById("calculate-button").addEventListener("click", calculate);
+  </script>
+</body>
+</html>
