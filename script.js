@@ -220,7 +220,11 @@ medications = {
   ],
 
 };
-// Function to calculate the medication dose for a given weight
+function calculate() {
+  // your calculation logic here
+  console.log("Calculate function called!");
+}
+  // Function to calculate the medication dose for a given weight
 function calculateMedicationDose(weight) {
   const results = {};
 
