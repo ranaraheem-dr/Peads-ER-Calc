@@ -1,112 +1,370 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+/* Modern Pediatric ER Calculator Styles */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
+}
+
 .calculator {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
+  width: 95%;
+  max-width: 800px;
+  margin: 10px auto;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .calculator h2 {
-  margin-top: 0;
-  color: #337ab7;
+  color: #2c3e50;
   text-align: center;
+  margin-bottom: 5px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.calculator h4 {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .calculator input[type="number"] {
   width: 100%;
-  height: 40px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  height: 50px;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.calculator input[type="number"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .calculator button {
   width: 100%;
-  height: 40px;
-  background-color: #4CAF50;
+  height: 50px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-}
-
-.calculator button:hover {
-  background-color: #3e8e41;
-}
-
-.calculator table {
-  width: 100%;
-  border-collapse: collapse;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 20px;
 }
 
-.calculator th, .calculator td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
+.calculator button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
-.calculator th {
-  background-color: #f0f0f0;
+.calculator button:active {
+  transform: translateY(0);
 }
 
-.centered-text {
+/* Results Styling */
+.results-header {
   text-align: center;
-  font-weight: bold;
-  color: #FF0000;
-  font-style: italic;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
 }
 
-.night-mode {
-  background-color: #333;
-  color: #fff;
+.results-header h3 {
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
 }
 
-.night-mode .calculator {
-  background-color: #444;
+.calculation-time {
+  color: #6c757d;
+  font-size: 0.9rem;
 }
 
-.night-mode .calculator th {
-  background-color: #555;
+.category-section {
+  margin-bottom: 25px;
 }
 
+.category-header {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.medications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.medication-card {
+  background: #fff;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.medication-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: #667eea;
+}
+
+.medication-card.high-alert {
+  border-left: 4px solid #e74c3c;
+  background: #fef9f9;
+}
+
+.medication-card.emergency {
+  border-left: 4px solid #f39c12;
+  background: #fffbf6;
+}
+
+.med-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.med-dose {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  background: #f8f9ff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.med-formula {
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.med-special {
+  font-size: 0.8rem;
+  color: #e74c3c;
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: #fef2f2;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Install and Instructions */
 .save-to-home-screen {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
+.save-to-home-screen button,
 .save-to-home-screen a {
-  display: block;
-  background-color: #4CAF50;
-  color: #fff;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
-  margin-right: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
-.save-to-home-screen a:last-child {
-  background-color: #ddd;
-  color: #333;
+#install-button {
+  background: #28a745;
+  color: white;
+}
+
+#install-button:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+#instructions-link {
+  background: #6c757d;
+  color: white;
+}
+
+#instructions-link:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
 }
 
 #instructions {
-  display: none;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
 }
 
-#instructions.show {
-  display: block;
+#instructions h3 {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+#instructions ol {
+  margin-left: 20px;
+}
+
+#instructions li {
+  margin-bottom: 8px;
+  color: #6c757d;
+}
+
+/* Offline Notice */
+.offline-notice {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .calculator {
+    width: 98%;
+    margin: 5px auto;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .calculator h2 {
+    font-size: 1.5rem;
+  }
+  
+  .medications-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .medication-card {
+    padding: 12px;
+  }
+  
+  .save-to-home-screen {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .save-to-home-screen button,
+  .save-to-home-screen a {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator {
+    padding: 10px;
+  }
+  
+  .calculator h2 {
+    font-size: 1.3rem;
+  }
+  
+  .calculator h4 {
+    font-size: 0.9rem;
+  }
+  
+  .category-header {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  }
+  
+  .calculator {
+    background: rgba(52, 73, 94, 0.95);
+    color: #ecf0f1;
+  }
+  
+  .calculator h2,
+  .calculator h4 {
+    color: #ecf0f1;
+  }
+  
+  .calculator input[type="number"] {
+    background: #34495e;
+    border-color: #4a5f7a;
+    color: #ecf0f1;
+  }
+  
+  .medication-card {
+    background: #2c3e50;
+    border-color: #4a5f7a;
+    color: #ecf0f1;
+  }
+  
+  .med-dose {
+    background: #34495e;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .calculator {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .save-to-home-screen,
+  #instructions {
+    display: none;
+  }
+  
+  .medication-card {
+    break-inside: avoid;
+    margin-bottom: 10px;
+  }
 }

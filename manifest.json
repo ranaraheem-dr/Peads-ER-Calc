@@ -1,20 +1,41 @@
 {
-  "name": "Paeds ER Calculator",
-  "short_name": "ER Calculator",
+  "name": "Pediatric Emergency Room Calculator",
+  "short_name": "Paeds ER Calc",
+  "description": "Intelligent offline pediatric drug dosing calculator for emergency medicine",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "description": "Paediatric Emergency Calculator",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "/",
   "icons": [
     {
       "src": "icon-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable any"
     },
     {
       "src": "icon-512x512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable any"
     }
-  ]
+  ],
+  "categories": [
+    "medical",
+    "healthcare",
+    "utilities",
+    "productivity"
+  ],
+  "screenshots": [
+    {
+      "src": "icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "narrow"
+    }
+  ],
+  "prefer_related_applications": false,
+  "lang": "en-US"
 }
